@@ -1,0 +1,50 @@
+@import 'reset.scss';
+@import 'navigation.scss';
+@import 'notfound.scss';
+@import 'accounts.scss';
+@import 'register.scss';
+
+$assetPath : "./images/";
+
+body {
+    background-image: url('/../images/bg2.jpg');
+    background-color: rgb(105, 20, 94);
+    height: 100vh; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.block {
+    width: 100%;
+    height: calc(100vh - 48px);
+    // background-color: green;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    
+    #{&}__wrapper {
+        width: 80%;
+        // background-color: blue;
+        max-height: calc(100vh - 48px);
+
+        &__image {
+            margin: 20px 0;
+            width: 100%;
+            max-height: calc(100vh - 68px);
+            object-fit: contain;
+            position: relative;
+            padding: 10px;
+            background-image: linear-gradient(to bottom, rgba(171, 0, 238, 0.4) ,rgba(171, 0, 238, 0));
+            border: 50%;
+            overflow: hidden;
+        }
+
+        
+    }
+}
+
+
+
+
