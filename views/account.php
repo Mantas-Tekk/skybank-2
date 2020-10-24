@@ -31,8 +31,8 @@ require DIR2 . '/views/main/header.php';
         <td>
           <div class="action__buttons">
             <button onclick="window.location=\'/account/delete/'.$value->id.'\'">Delete</button>
-            <button onclick="window.location=\'/account/edit/'.$value->id.'\'">Add</button>
-            <button onclick="window.location=\'/account/edit/'.$value->id.'\'">Sub</button>
+            <button onclick="window.location=\'/account/edit/'.$value->id.'/add\'">Add</button>
+            <button onclick="window.location=\'/account/edit/'.$value->id.'/sub\'">Sub</button>
           </div>
         </td>
       </tr>';

@@ -20,6 +20,20 @@ class JsonDB implements DataBase
 
     function update​(int $userId, array $userData): void
     {
+        $temp = [];
+        $this->getData();
+
+        if (is_array($this->data)) {
+            _c($this->data);
+            foreach ($this->data as $value) {
+                if ($value->id == $userId) {
+                    $tempData[] = $userData;
+                } else {
+                    $tempData[] = $value;
+                }
+            }
+            file_put_contents(DIR2 . '/db/data.json', json_encode($tempData));
+        }
     }
 
     function delete(int $userId): void

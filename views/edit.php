@@ -1,12 +1,24 @@
 <?php
-
 require DIR2 . '/views/main/header.php';
+$buttonText = '';
+
+if($action == 'add') {
+    $buttonText = 'Add';
+}
+if($action == 'sub') {
+    $buttonText = 'Substract';
+}
+
+
+echo $action;
 ?>
 
 <div class="container1">
     <?php // $toast_html?>
    <div class="container2">
-        <form action="" method="POST">
+        <form action="/account/update" method="POST">
+            <input type="hidden" id="id" name="id" value="<?=$id?>">
+
             <div class="row">
                 <div class="col-25">
                     <label for="fname">Vardas</label>
@@ -34,13 +46,14 @@ require DIR2 . '/views/main/header.php';
             <br>
             <div class="row">
                 <div class="col-25">
-                    <label for="money"><?php //$button_name ?> pinigu</label>
+                    <label for="money"><?= $buttonText ?> some money</label>
                 </div>
                 <div class="col-50">
                     <input type="text" name="money" id="money" placeholder="0.00 €">
                 </div>
+
                 <div class="col-25-b">
-                    <button type="submit" name="<?php //$button_value ?>">EDIT<?php //$button_name ?></button>
+                    <button type="submit" name="<?= $action ?>"><?= $buttonText ?></button>
                 </div>
             </div>
         </form>

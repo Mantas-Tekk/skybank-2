@@ -50,7 +50,7 @@ class AccountController
         }
     }
 
-    function edit(int $id)
+    function edit(int $id, string $action)
     {
         //echo 'id:'.$id.'<br>';
         $this->db = new JsonDB();
@@ -68,25 +68,60 @@ class AccountController
 
     function update()
     {
-        require DIR . '/../views/update.php';
+        $this->db = new JsonDB();
+        $this->validator = new Validator();
+
+        if (isset($_POST['add'])) {
+            $id = $_POST['id'];
+
+            if ($this->validator->validSumValidator($_POST['money'])) {
+
+                $user = $this->db->show​($id);
+                $user['balance'] += $_POST['money'];
+                $user['balance'] = number_format($user['balance'], 2, ".", "");
+                $this->db->update​((int)$id, $user);
+                //
+                header('Location: ' . INSTALL_DIR . '/account/edit/' . $_POST['id'] . '/add');
+            } else {
+                header('Location: ' . INSTALL_DIR . '/account/edit/' . $_POST['id'] . '/add');
+            }
+            //header('Location: ' . INSTALL_DIR . '/account');
+        } elseif (isset($_POST['sub'])) {
+            $id = $_POST['id'];
+            if ($this->validator->validSumValidator($_POST['money'])) {
+                $user = $this->db->show​($id);
+
+                if (($user['balance'] - $_POST['money']) >= 0) {
+
+                    $user['balance'] -= $_POST['money'];
+                    $user['balance'] = number_format($user['balance'], 2, ".", "");
+
+                    $this->db->update​((int)$id, $user);
+                    header('Location: ' . INSTALL_DIR . '/account/edit/' . $_POST['id'] . '/sub');
+                } else {
+                    header('Location: ' . INSTALL_DIR . '/account/edit/' . $_POST['id'] . '/sub');
+                }
+            }
+            //header('Location: ' . INSTALL_DIR . '/account');
+        } else {
+            header('Location: ' . INSTALL_DIR . '/account');
+        }
     }
 
     function delete(int $id)
     {
         $this->db = new JsonDB();
-        $this->db->delete($id);
-
-        // echo 'id:' . $id . '<br>';
-        echo 'DELETE <br>';
+        $user = $this->db->show​($id);
+        if($user['balance'] == 0 ) {
+            $this->db->delete($id);
+        }
         header('Location: ' . INSTALL_DIR . '/account');
     }
-
+    
     function index()
     {
         $this->db = new JsonDB();
         $data = $this->db->showAll​();
-
-
 
         require DIR . '/../views/account.php';
     }
