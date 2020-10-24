@@ -9,22 +9,31 @@ require DIR2 . '/views/main/header.php';
         <p>'.$error.'</p>
     </div> -->
 
-    <form action="/account/save" method="post">
-        <h2>Registracijos forma</h2>
+    <div class="wrapper2">
 
-        <label for="name">Vardas</label>
-        <input type="text" name="name" >
-
-        <label for="lastname">Pavarde</label>
-        <input type="text" name="lastname" >
-        
-        <label for="personalcode">Asmens kodas</label>
-        <input type="text" name="personalnumber">
-
-        <div class="reg-button-wrapp">
-            <button type="submit" name="register">Registruotis</button>
+        <div class="img__container">
+            <img src="/images/4.png" alt="">
         </div>
-    </form>
+    
+        <form action="/account/save" method="post">
+            <h2>Registracijos forma</h2>
+    
+            <label for="name">Vardas</label>
+            <input type="text" name="name">
+    
+            <label for="lastname">Pavarde</label>
+            <input type="text" name="lastname">
+    
+            <label for="personalcode">Asmens kodas</label>
+            <input type="text" name="personalnumber">
+    
+            <div class="reg-button-wrapp">
+                <button type="submit" name="register">Registruotis</button>
+            </div>
+        </form>
+
+    </div>
+
 </div>
 
 <?php

@@ -193,43 +193,55 @@ body * {
   width: calc(100% - 40px);
   font-family: arial, sans-serif;
   border-collapse: collapse;
+  border: 2px solid #430081;
 }
 
 .acc__container table tbody {
   word-break: normal;
 }
 
-.acc__container td,
-.acc__container th {
+.acc__container table td,
+.acc__container table th {
+  border: 2px solid #430081;
   text-align: left;
-  padding: 8px;
+  padding: 2px;
 }
 
-.acc__container th,
-.acc__container td {
+.acc__container table th,
+.acc__container table td {
+  color: black;
+}
+
+.acc__container table tr:first-of-type th {
   color: #fff;
 }
 
-.acc__container tr > td:last-child {
-  float: right;
-  display: flex;
-  justify-content: end;
-}
-
-.acc__container tr > td:last-child .action__button {
+.acc__container table tr > td:last-child .action__buttons {
+  -moz-column-gap: auto;
+       column-gap: auto;
+  border: none;
   width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
 }
 
-.acc__container tr:nth-child(even) {
-  background-color: rgba(209, 3, 209, 0.705);
+.acc__container table tr:nth-child(even) {
+  background-color: #d8c2cf;
 }
 
-.acc__container tr:nth-child(odd) {
-  background-color: rgba(150, 8, 150, 0.705);
+.acc__container table tr:not(:first-child):nth-child(odd) {
+  background-color: #669cda;
 }
 
-.acc__container tr:first-child {
-  background-color: rgba(73, 2, 73, 0.705);
+.acc__container table tr:first-child {
+  background-color: #430081;
+}
+
+.tabel__header th {
+  color: #fff;
 }
 
 .register {
@@ -260,9 +272,33 @@ body * {
   color: white;
 }
 
-.register form {
-  height: 400px;
+.register .wrapper2 {
   background-image: linear-gradient(to bottom, rgba(171, 0, 238, 0.55), rgba(171, 0, 238, 0));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .register .wrapper2 .img__container {
+    display: none;
+  }
+}
+
+.register .wrapper2 .img__container {
+  height: 400px;
+}
+
+.register .wrapper2 .img__container img {
+  margin-top: 5%;
+  margin-left: 5%;
+  height: 90%;
+  width: auto;
+}
+
+.register .wrapper2 form {
+  height: 400px;
   width: 400px;
   display: flex;
   align-items: flex-start;
@@ -270,7 +306,7 @@ body * {
   flex-direction: column;
 }
 
-.register form input {
+.register .wrapper2 form input {
   margin: 0 20px 0 20px;
   width: calc(100% - 40px);
   height: 25px;
@@ -279,21 +315,21 @@ body * {
   padding: 15px 5px;
 }
 
-.register form label {
+.register .wrapper2 form label {
   color: white;
   font-size: 18px;
   font-weight: 700;
   margin: 15px 20px 5px 20px;
 }
 
-.register form .reg-button-wrapp {
+.register .wrapper2 form .reg-button-wrapp {
   width: 100%;
 }
 
-.register form .reg-button-wrapp button {
+.register .wrapper2 form .reg-button-wrapp button {
   border: none;
-  border: 1px solid #0d385c;
-  background-color: #5c0d55;
+  border: 1px solid #7007a0;
+  background-color: #7007a0;
   font-size: 20px;
   color: #fff;
   margin: 20px 20px;
@@ -301,14 +337,187 @@ body * {
   float: right;
 }
 
-.register form .reg-button-wrapp button:hover {
-  background-color: #5ea8e6;
+.register .wrapper2 form .reg-button-wrapp button:hover {
+  background-color: #480bbb;
   color: white;
+  border: 1px solid #480bbb;
+}
+
+.register .wrapper2 form .reg-button-wrapp button:active {
+  outline: none;
+}
+
+.container1 {
+  /* background-color: rgba(240, 255, 255, 0.377); */
+  height: calc(100vh - 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container1 .info {
+  background-color: #535353;
+  margin: 20px;
+}
+
+.container2 {
+  width: 450px;
+  background-image: linear-gradient(to bottom, rgba(171, 0, 238, 0.55), rgba(171, 0, 238, 0));
+  padding: 20px;
+}
+
+.container2 input[type=text],
+.container2 select {
+  margin-top: 5px;
+  height: 25px;
+  padding: 15px 5px;
+  outline: none;
+  font-size: 16px;
+  width: 100%;
+}
+
+.container2 input[type=text]:disabled::-moz-placeholder {
+  /* background-color: rgba(240, 255, 255, 0.377); */
+  height: 25px;
+  padding: 15px 5px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.container2 input[type=text]:disabled:-ms-input-placeholder {
+  /* background-color: rgba(240, 255, 255, 0.377); */
+  height: 25px;
+  padding: 15px 5px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.container2 input[type=text]:disabled::placeholder {
+  /* background-color: rgba(240, 255, 255, 0.377); */
+  height: 25px;
+  padding: 15px 5px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.container2 input[type=text]:disabled {
+  background-color: transparent;
+  border: none;
+}
+
+.container2 label {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+.container2 button[type=submit] {
+  border: none;
+  border: 1px solid #0d385c;
+  background-color: #0d385c;
+  color: #fff;
+  font-size: 20px;
+  padding: 12px 20px;
+  /* border-radius: 4px; */
+  cursor: pointer;
+  float: right;
+}
+
+.container2 button[type=submit]:hover {
+  background-color: #5ea8e6;
+  color: black;
   border: 1px solid black;
 }
 
-.register form .reg-button-wrapp button:active {
-  outline: none;
+.col-25 {
+  float: left;
+  width: 25%;
+  /* margin-top: 6px; */
+}
+
+.col-25-b {
+  float: left;
+  width: 25%;
+  /* margin-top: 6px; */
+}
+
+.col-50 {
+  float: left;
+  width: 50%;
+  /* margin-top: 6px; */
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  /* margin-top: 6px; */
+}
+
+.col-100 {
+  float: left;
+  width: 100%;
+  /* margin-top: 6px; */
+}
+
+/* Clear floats after the columns */
+
+.container2 .row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+
+@media screen and (max-width: 880px) {
+  .container2 input[type=submit] {
+    width: 50%;
+    margin-top: 0;
+  }
+
+  .col-25-b {
+    width: 25%;
+    /* margin-top: 10px; */
+  }
+
+  .col-75 {
+    width: 75%;
+    margin-top: 0;
+  }
+
+  .container2 button[type=submit] {
+    margin-top: 6px;
+    padding: 3px 10px;
+  }
+
+  .container2 {
+    width: 70%;
+  }
+
+  .toast1 {
+    width: 70%;
+  }
+
+  .table-wrapper {
+    margin: 0 10px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .container2 {
+    width: 450px;
+  }
+
+  .toast1 {
+    width: 450px;
+  }
+
+  .table-wrapper {
+    margin: 0 15%;
+  }
 }
 
 body {

@@ -6,7 +6,8 @@ use App\DB\JsonDB;
 use App\Validator;
 use App\Generator;
 
-class AccountController {
+class AccountController
+{
 
     private $db;
     private $validator;
@@ -17,19 +18,15 @@ class AccountController {
         //echo 'cunstructed Account controller <br>';
     }
 
-    public function create1() {
-
-        // if(isset($_POST['register'])) {
-        //     _c('create');
-        //     _c($_POST);
-        //     header('Location: '.INSTALL_DIR.'/account/save');
-        // }
+    public function create1()
+    {
         require DIR . '/../views/create.php';
     }
-    
-    function save() {
 
-        if(isset($_POST['register'])) {
+    function save()
+    {
+
+        if (isset($_POST['register'])) {
             $user = [
                 'name' => $_POST['name'],
                 'surname' => $_POST['lastname'],
@@ -38,40 +35,58 @@ class AccountController {
                 'balance' => '0.00',
                 'id' => 0,
             ];
-    
-            var_dump($_POST);
+
             $this->validator = new Validator();
             $this->db = new JsonDB();
-    
-            if($this->validator->fromInputsvalidaion($user, $this->db->showAll​())) {
+
+            if ($this->validator->fromInputsvalidaion($user, $this->db->showAll​())) {
                 $this->generator = new Generator();
                 $user['iban'] = $this->generator->ibanGenerator();
                 $this->db->create​($user);
-                header('Location: '.INSTALL_DIR.'/account');
-    
+                header('Location: ' . INSTALL_DIR . '/account');
             } else {
-                header('Location: '.INSTALL_DIR.'/account/create');
+                header('Location: ' . INSTALL_DIR . '/account/create');
             }
         }
-
-        //  echo 'SAVE <br>';
     }
 
-    function edit() {
-        require DIR . '/../views/edit.php';
+    function edit(int $id)
+    {
+        //echo 'id:'.$id.'<br>';
+        $this->db = new JsonDB();
+
+        $user = $this->db->show​($id);
+        _c($user);
+        if (!(count($user) == 0)) {
+            // EDIT DATA AND SAVE
+
+            require DIR . '/../views/edit.php';
+        } else {
+            header('Location: ' . INSTALL_DIR . '/account/edit/notfound');
+        }
     }
 
-    function update() {
+    function update()
+    {
         require DIR . '/../views/update.php';
     }
 
-    function delete() {
+    function delete(int $id)
+    {
+        $this->db = new JsonDB();
+        $this->db->delete($id);
+
+        // echo 'id:' . $id . '<br>';
         echo 'DELETE <br>';
+        header('Location: ' . INSTALL_DIR . '/account');
     }
 
-    function index() {
-        $db = new JsonDB();
-        $data = $db->showAll​();
+    function index()
+    {
+        $this->db = new JsonDB();
+        $data = $this->db->showAll​();
+
+
 
         require DIR . '/../views/account.php';
     }

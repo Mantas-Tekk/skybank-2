@@ -30,14 +30,19 @@ if ('' == strtolower($path[0]) && count($path) == 1 || 'index' == strtolower($pa
 } elseif ('account' == strtolower($path[0]) && count($path) > 1) {
     $accountController = new AccountController();
 
-    if ('edit' == strtolower($path[1]) && count($path) > 1) {
-        $accountController->edit();
+    if ('edit' == strtolower($path[1]) && count($path) > 2) {
+        if (is_numeric($path[2] )) {$accountController->edit($path[2]);}
+        else {$notfoundController = new NotfoundController();
+            $notfoundController->notFound();}
     } elseif ('create' == strtolower($path[1]) && count($path) > 1) {
         $accountController->create1();
     } elseif ('update' == strtolower($path[1]) && count($path) > 1) {
         $accountController->update();
     } elseif ('delete' == strtolower($path[1]) && count($path) > 1) {
-        $accountController->delete();
+        if (is_numeric($path[2] )) {$accountController->delete($path[2]);}
+        else {$notfoundController = new NotfoundController();
+            $notfoundController->notFound();}
+        // $accountController->delete();
     } elseif ('save' == strtolower($path[1]) && count($path) > 1) {
         $accountController->save();
     } else {

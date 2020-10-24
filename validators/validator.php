@@ -93,7 +93,6 @@ class Validator
         return $is_name_valid;
     }
 
-
     private function validSumValidator($money)
     {
         $pattern = '/^[0-9]+(\.[0-9]{1,2})?/';

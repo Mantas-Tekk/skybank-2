@@ -7,7 +7,8 @@ require DIR2 . '/views/main/header.php';
 ?>
 
 <div class="acc__container">
-  <table>
+
+  <table id="customers">
     <tr>
       <th>ID</th>
       <th>Firstname</th>
@@ -24,18 +25,17 @@ require DIR2 . '/views/main/header.php';
         <td>'.$value->id.'</td>
         <td>'.$value->name.'</td>
         <td>'.$value->surname.'</td>
-        <td>'.$value->iban.'</td>
-        <td>'.$value->balance.'</td>
         <td>'.$value->personalNumber.'</td>
+        <td>'.$value->iban.'</td>
+        <td>'.$value->balance.' €</td>
         <td>
           <div class="action__buttons">
-            <button>Delete</button>
-            <button>Add</button>
-            <button>Substract</button>
+            <button onclick="window.location=\'/account/delete/'.$value->id.'\'">Delete</button>
+            <button onclick="window.location=\'/account/edit/'.$value->id.'\'">Add</button>
+            <button onclick="window.location=\'/account/edit/'.$value->id.'\'">Sub</button>
           </div>
         </td>
       </tr>';
-      
     }
     ?>
   </table>
