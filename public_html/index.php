@@ -15,7 +15,7 @@ index GET rodo sarasa
 
 define('INSTALL_DIR', '');
 define('DIR', __DIR__);
-define('DIR2', str_replace('\\public', '', __DIR__));
+define('DIR2', str_replace('\\public_html', '', __DIR__));
 define('SERVER_NAME', $_SERVER['SERVER_NAME']);
 
 require __DIR__ . '/../bootstrap/bootstrap.php';
